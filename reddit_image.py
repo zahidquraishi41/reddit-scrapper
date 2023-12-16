@@ -49,5 +49,5 @@ class RedditImage:
         '''Extract the file extension of the image.'''
         if '.' not in self._submission.url:
             return None
-        _ext = self.hq_url().split('.')[-1].split('?')[0].lower()
+        _ext = self.source_url().split('.')[-1].split('?')[0].lower()
         return None if len(_ext) >= 5 else _ext
