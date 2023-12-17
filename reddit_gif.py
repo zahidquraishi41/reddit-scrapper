@@ -17,8 +17,8 @@ class RedditGif:
             Tuple[str]: A tuple of available resolutions.'''
         return tuple(self._metadata.keys())
 
-    def url_for(self, resolution: str, variant: str = 'gif') -> Optional[str]:
-        """Get the URL for a specific resolution.
+    def url_for(self, resolution: str = None, variant: str = 'gif') -> Optional[str]:
+        """Get the URL for a specific resolution. If no specific quality is requested, the URL for the highest available quality will be provided.
 
         Args:
             resolution (str): The desired resolution.
@@ -27,6 +27,8 @@ class RedditGif:
         Returns:
             Optional[str]: The URL for the specified resolution, or None if not available.
         """
+        if resolution is None:
+            resolution = self.resolutions()[-1]
         if resolution not in self._metadata:
             return None
         return self._metadata[resolution][variant]

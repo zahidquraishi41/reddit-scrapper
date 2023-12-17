@@ -17,8 +17,8 @@ class RedditImage:
             Tuple[str]: A tuple of available resolutions.'''
         return tuple(self._metadata.keys())
 
-    def url_for(self, resolution: str) -> Optional[str]:
-        """Get the URL for a specific resolution.
+    def url_for(self, resolution: str = None) -> Optional[str]:
+        """Get the URL for a specific resolution. If no specific quality is requested, the URL for the highest available quality will be provided.
 
         Args:
             resolution (str): The desired resolution.
@@ -26,6 +26,8 @@ class RedditImage:
         Returns:
             Optional[str]: The URL for the specified resolution, or None if not available.
         """
+        if resolution is None:
+            resolution = self.resolutions()[-1]
         return self._metadata.get(resolution, None)
 
     def source_url(self) -> str:
