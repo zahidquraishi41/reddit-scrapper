@@ -58,7 +58,7 @@ class RedditGif:
 
     def _extract_extension(self) -> Optional[str]:
         '''Extract the file extension of the gif.'''
-        if '.' not in self._submission.url:
+        if '.' not in self.source_url():
             return None
-        _ext = self.source_url().split('.')[-1].split('?')[0].lower()
-        return None if len(_ext) >= 5 else _ext
+        ext = self.source_url().split('.')[-1].split('?')[0].lower()
+        return None if len(ext) >= 5 else ext
